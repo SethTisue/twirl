@@ -88,7 +88,9 @@ lazy val compiler = project
       (if (ScalaArtifacts.isScala3(scalaVersion.value))
          "org.scala-lang" %% "scala3-compiler" % scalaVersion.value
        else
-         "org.scala-lang" % "scala-compiler" % scalaVersion.value),
+         ("org.scala-lang" % "scala-compiler" % scalaVersion.value)
+          .exclude("org.scala-lang.modules", s"scala-xml_${scalaBinaryVersion.value}"),
+      ),
     libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % ScalaParserCombinatorsVersion % "optional",
     run / fork := true,
   )
