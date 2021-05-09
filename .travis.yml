@@ -60,7 +60,7 @@ jobs:
 
     - name: "Run plugin tests on AdoptOpenJDK 8"
       script: |
-        sbt ++2.12.13 publishLocal ++2.13.5 publishLocal plugin/test plugin/scripted
+        sbt ++2.12.13 publishLocal plugin/test plugin/scripted
       env:
         - TRAVIS_JDK=8
 
