@@ -60,7 +60,7 @@ lazy val api = crossProject(JVMPlatform, JSPlatform)
       )
     ),
     libraryDependencies += "org.scala-lang.modules" %%% "scala-xml" % ScalaXmlVersion,
-    libraryDependencies += "org.scalatest" %%% "scalatest" % ScalaTestVersion % Test,
+    libraryDependencies += "org.scalatest"          %%% "scalatest" % ScalaTestVersion % Test,
   )
 
 lazy val apiJvm = api.jvm
@@ -74,7 +74,7 @@ lazy val parser = project
     name := "twirl-parser",
     libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % ScalaParserCombinatorsVersion % Optional,
     libraryDependencies += "com.novocode"            % "junit-interface"          % "0.11"                        % Test,
-    libraryDependencies += "org.scalatest" %%% "scalatest" % ScalaTestVersion % Test,
+    libraryDependencies += "org.scalatest"         %%% "scalatest"                % ScalaTestVersion              % Test,
   )
 
 lazy val compiler = project
@@ -89,8 +89,7 @@ lazy val compiler = project
          "org.scala-lang" %% "scala3-compiler" % scalaVersion.value
        else
          ("org.scala-lang" % "scala-compiler" % scalaVersion.value)
-          .exclude("org.scala-lang.modules", s"scala-xml_${scalaBinaryVersion.value}"),
-      ),
+           .exclude("org.scala-lang.modules", s"scala-xml_${scalaBinaryVersion.value}")),
     libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % ScalaParserCombinatorsVersion % "optional",
     run / fork := true,
   )
