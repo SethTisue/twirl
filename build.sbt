@@ -6,8 +6,8 @@ import org.scalajs.jsenv.nodejs.NodeJSEnv
 val previousVersion: Option[String] = Some("1.5.0")
 
 val ScalaTestVersion              = "3.2.8"
-val ScalaXmlVersion               = "2.0.0-M5"
-val ScalaParserCombinatorsVersion = "1.2.0-M2"
+val ScalaXmlVersion               = "2.0.0-RC1"
+val ScalaParserCombinatorsVersion = "1.2.0-RC2"
 
 val mimaSettings = Seq(
   mimaPreviousArtifacts := previousVersion.map(organization.value %% name.value % _).toSet
@@ -60,8 +60,7 @@ lazy val api = crossProject(JVMPlatform, JSPlatform)
       )
     ),
     libraryDependencies += "org.scala-lang.modules" %%% "scala-xml" % ScalaXmlVersion,
-    libraryDependencies += ("org.scalatest" %%% "scalatest" % ScalaTestVersion % Test)
-      .exclude("org.scala-lang.modules", "scala-xml_2.13"),
+    libraryDependencies += "org.scalatest" %%% "scalatest" % ScalaTestVersion % Test,
   )
 
 lazy val apiJvm = api.jvm
@@ -75,8 +74,7 @@ lazy val parser = project
     name := "twirl-parser",
     libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % ScalaParserCombinatorsVersion % Optional,
     libraryDependencies += "com.novocode"            % "junit-interface"          % "0.11"                        % Test,
-    libraryDependencies += ("org.scalatest" %%% "scalatest" % ScalaTestVersion % Test)
-      .exclude("org.scala-lang.modules", "scala-xml_2.13"),
+    libraryDependencies += "org.scalatest" %%% "scalatest" % ScalaTestVersion % Test,
   )
 
 lazy val compiler = project
